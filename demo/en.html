@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample deck</title>
+    <meta name="description" content="reveal.js deck template for new talks." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="../assets/deck.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- COVER: .cover enlarges the h1 and enables the .byline block -->
+        <section class="cover">
+          <div class="kicker">Event / track</div>
+          <h1>Talk<br /><em>title</em></h1>
+          <p class="sub">One line saying what the audience takes home.</p>
+          <div class="byline">
+            <span>Your name</span>
+            <span class="dot">/</span>
+            <span>Co-speaker</span>
+            <span class="where">City</span>
+          </div>
+          <aside class="notes">Speaker notes show up by pressing S.</aside>
+        </section>
+
+        <!-- PERSON: photo in assets/ + credential list -->
+        <section>
+          <div class="kicker">Speakers</div>
+          <div class="person">
+            <div class="avatar">
+              <img src="../assets/matheus.jpg" alt="Speaker photo" />
+              <span class="handle">@handle</span>
+            </div>
+            <div>
+              <h2>Speaker name</h2>
+              <ul>
+                <li><b>Role</b> at company</li>
+                <li>Community or project you contribute to</li>
+                <li>City</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- QUESTION: the turning slide. <em> paints the span orange -->
+        <section class="question">
+          <div class="kicker">The question</div>
+          <h2>The <em>one</em> question the whole talk answers.</h2>
+          <div class="mark-q">?</div>
+        </section>
+
+        <!-- ANSWER: one big word + the thesis in a sentence -->
+        <section class="answer">
+          <div class="kicker">The answer</div>
+          <h1>One word.</h1>
+          <p class="sub fragment fade-up">
+            The thesis in one sentence. <strong>fragment fade-up</strong> reveals on click.
+          </p>
+        </section>
+
+        <!-- TAKEAWAYS: 3-card grid -->
+        <section>
+          <div class="kicker">What you take home</div>
+          <h2>A path, not a <em>pep talk</em>.</h2>
+          <div class="takeaways">
+            <div class="card">
+              <span class="num">01</span>
+              <h3>First step</h3>
+              <p>Short, concrete sentence.</p>
+            </div>
+            <div class="card">
+              <span class="num">02</span>
+              <h3>Second step</h3>
+              <p>Short, concrete sentence.</p>
+            </div>
+            <div class="card">
+              <span class="num">03</span>
+              <h3>Third step</h3>
+              <p>Short, concrete sentence.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="deck-footer">
+      <a href="../">&larr; talks</a>
+      <span>Sample deck</span>
+      <span class="lang"><a href="./">PT</a><b>EN</b></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        margin: 0.04,
+        hash: true,
+        slideNumber: "c/t",
+        transition: "fade",
+        transitionSpeed: "fast",
+        plugins: [RevealNotes],
+      });
+    </script>
+  </body>
+</html>

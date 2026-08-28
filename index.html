@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Talks</title>
+    <meta name="description" content="Palestras e apresentações. Slides em reveal.js." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="kicker">Slides &amp; apresentações</div>
+      <h1>Talks</h1>
+      <p class="intro">
+        Decks das palestras que eu apresento, em reveal.js. Cada talk existe em
+        <strong>português</strong> e <strong>inglês</strong>. Setas para navegar,
+        <strong>S</strong> para as notas do palestrante, <strong>F</strong> para tela cheia.
+      </p>
+
+      <div class="talks" id="talks"></div>
+
+      <footer>
+        Para adicionar uma talk: copie a pasta <a href="demo/">demo/</a> e registre a entrada em
+        <code>index.html</code> &middot;
+        <a href="https://github.com/omatheusmesmo">github.com/omatheusmesmo</a>
+      </footer>
+    </div>
+
+    <script>
+      // Registro de talks. Para publicar uma nova, adicione um objeto no topo da lista.
+      const TALKS = [
+        {
+          slug: "o-poder-do-foco",
+          date: "2026",
+          title: "O Poder do Foco",
+          summary:
+            "Crescendo através de open source e comunidade. Como código, comunidade e presença em eventos viram carreira.",
+          speakers: "Matheus Oliveira · Luiz Real",
+        },
+        {
+          slug: "demo",
+          date: "Template",
+          title: "Deck de exemplo",
+          summary:
+            "Estrutura mínima para começar uma talk nova. Copie esta pasta, renomeie e edite os slides.",
+          speakers: "Ponto de partida",
+          tag: "template",
+        },
+      ];
+
+      const esc = (value) =>
+        String(value).replace(
+          /[&<>"']/g,
+          (char) =>
+            ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char],
+        );
+
+      document.getElementById("talks").innerHTML = TALKS.map((talk) => {
+        const slug = esc(talk.slug);
+        const tag = talk.tag ? `<span class="tag">${esc(talk.tag)}</span>` : "";
+        return `
+          <div class="talk">
+            <span class="date">${esc(talk.date)}</span>
+            <span>
+              <h2><a href="${slug}/">${esc(talk.title)}</a>${tag}</h2>
+              <p>${esc(talk.summary)}</p>
+              <span class="who">${esc(talk.speakers)}</span>
+            </span>
+            <span class="langs">
+              <a href="${slug}/">PT</a>
+              <a href="${slug}/en.html">EN</a>
+            </span>
+          </div>`;
+      }).join("");
+    </script>
+  </body>
+</html>

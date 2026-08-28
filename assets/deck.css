@@ -1,0 +1,549 @@
+/* Tema compartilhado dos decks. Base: reveal.js 5.x */
+
+:root {
+  --ink: #0d0c0b;
+  --ink-soft: #16130f;
+  --paper: #f4efe6;
+  --muted: rgba(244, 239, 230, 0.52);
+  --ember: #ff5f2e;
+  --ember-dim: rgba(255, 95, 46, 0.18);
+  --line: rgba(244, 239, 230, 0.13);
+
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Archivo", "Helvetica Neue", Helvetica, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html,
+body {
+  background: var(--ink);
+}
+
+.reveal-viewport {
+  background:
+    radial-gradient(120% 90% at 12% 0%, #1c1713 0%, rgba(28, 23, 19, 0) 62%),
+    radial-gradient(90% 70% at 100% 100%, rgba(255, 95, 46, 0.11) 0%, rgba(255, 95, 46, 0) 60%),
+    var(--ink);
+}
+
+/* Tinta âmbar de sangria total nos slides de virada (.question / .bonus) */
+.reveal-viewport::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background: linear-gradient(115deg, rgba(255, 95, 46, 0.13), rgba(255, 95, 46, 0) 58%);
+}
+
+.reveal-viewport:has(section.present.question)::before,
+.reveal-viewport:has(section.present.bonus)::before {
+  opacity: 1;
+}
+
+/* Grão sutil sobre o fundo, para o deck não parecer chapado no projetor */
+.reveal-viewport::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal {
+  font-family: var(--font-body);
+  color: var(--paper);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: 0 96px;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---------- Tipografia ---------- */
+
+.reveal h1,
+.reveal h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin: 0;
+  color: var(--paper);
+}
+
+.reveal h1 {
+  font-size: 104px;
+}
+
+.reveal h2 {
+  font-size: 72px;
+}
+
+.reveal em {
+  font-style: italic;
+  color: var(--ember);
+}
+
+.reveal p {
+  font-size: 30px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+}
+
+.reveal strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* Etiqueta mono no topo de cada slide */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.lede {
+  font-size: 34px;
+  line-height: 1.4;
+  color: var(--paper);
+  max-width: 21ch;
+}
+
+.sub {
+  font-size: 26px;
+  color: var(--muted);
+  margin-top: 28px;
+  max-width: 46ch;
+}
+
+/* ---------- Capa ---------- */
+
+.cover h1 {
+  font-size: 128px;
+  max-width: 12ch;
+}
+
+.cover .sub {
+  font-size: 30px;
+  margin-top: 32px;
+  max-width: 34ch;
+}
+
+.byline {
+  margin-top: 64px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.byline .dot {
+  color: var(--ember);
+}
+
+.byline .where {
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+/* ---------- Slide de pessoa ---------- */
+
+.person {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.person .avatar {
+  position: relative;
+  width: 200px;
+  margin-top: 8px;
+}
+
+.person .avatar img {
+  position: relative;
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Moldura deslocada atrás da foto: profundidade sem pesar no projetor */
+.person .avatar::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--ember);
+  border-radius: 4px;
+}
+
+.person .handle {
+  display: block;
+  margin-top: 26px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--ember);
+  word-break: break-all;
+}
+
+.person h2 {
+  font-size: 66px;
+  margin-bottom: 30px;
+}
+
+.person ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.person li {
+  font-size: 27px;
+  line-height: 1.5;
+  color: var(--muted);
+  padding: 13px 0 13px 30px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.person li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.person li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 26px;
+  width: 12px;
+  height: 1px;
+  background: var(--ember);
+}
+
+.person li b {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* ---------- A pergunta ---------- */
+
+.question h2 {
+  font-size: 82px;
+  line-height: 1.02;
+  max-width: 17ch;
+}
+
+.question .mark-q {
+  font-family: var(--font-display);
+  font-size: 300px;
+  line-height: 0.5;
+  color: var(--ember);
+  opacity: 0.22;
+  position: absolute;
+  right: 70px;
+  bottom: 40px;
+  pointer-events: none;
+}
+
+/* ---------- A resposta ---------- */
+
+.answer h1 {
+  font-size: 190px;
+  letter-spacing: -0.04em;
+  color: var(--ember);
+}
+
+.answer .sub {
+  font-size: 32px;
+  color: var(--paper);
+  max-width: 30ch;
+  margin-top: 36px;
+}
+
+/* ---------- Lista de takeaways ---------- */
+
+.takeaways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  margin-top: 52px;
+}
+
+.takeaways .card {
+  border-top: 2px solid var(--ember);
+  padding-top: 22px;
+}
+
+.takeaways .num {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: var(--ember);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.takeaways h3 {
+  font-family: var(--font-body);
+  font-size: 27px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 0 0 12px;
+  line-height: 1.25;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.takeaways p {
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+/* ---------- Cromo do reveal ---------- */
+
+.reveal .progress {
+  height: 3px;
+  color: var(--ember);
+}
+
+.reveal .controls {
+  color: var(--muted);
+}
+
+.reveal .slide-number {
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--muted);
+  right: 34px;
+  bottom: 26px;
+}
+
+.deck-footer {
+  position: fixed;
+  left: 34px;
+  bottom: 26px;
+  z-index: 30;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.3);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.deck-footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.deck-footer a:hover {
+  color: var(--ember);
+  border-bottom-color: var(--ember);
+}
+
+.reveal .fragment.fade-up {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal .fragment.fade-up.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media print {
+  .reveal-viewport::after,
+  .deck-footer {
+    display: none;
+  }
+}
+
+/* ---------- Q&A: as golden questions no final ---------- */
+
+.qa ol {
+  list-style: none;
+  counter-reset: q;
+  margin: 44px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.qa li {
+  counter-increment: q;
+  font-family: var(--font-display);
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--paper);
+  padding: 20px 0 20px 78px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.qa li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.qa li::before {
+  content: "0" counter(q);
+  position: absolute;
+  left: 0;
+  top: 28px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: var(--ember);
+}
+
+/* ---------- Bônus: PR ao vivo ---------- */
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.steps span {
+  font-family: var(--font-mono);
+  font-size: 21px;
+  padding: 12px 20px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--paper);
+  background: rgba(244, 239, 230, 0.03);
+}
+
+.steps span.now {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.steps .arrow {
+  border: none;
+  background: none;
+  color: var(--ember);
+  padding: 12px 0;
+}
+
+/* ---------- Alternador de idioma no rodapé ---------- */
+
+.deck-footer .lang {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.deck-footer .lang b {
+  color: var(--ember);
+  font-weight: 500;
+}
+
+/* ---------- Duas colunas: código x comunidade ---------- */
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-top: 42px;
+}
+
+.duo .col {
+  border-top: 2px solid var(--ember);
+  padding-top: 22px;
+}
+
+.duo h3 {
+  font-family: var(--font-body);
+  font-size: 27px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 0 0 16px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.duo ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.duo li {
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--muted);
+  padding: 7px 0 7px 26px;
+  position: relative;
+}
+
+.duo li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 11px;
+  height: 1px;
+  background: var(--ember);
+}
+
+.duo + .sub {
+  margin-top: 40px;
+  max-width: none;
+}
