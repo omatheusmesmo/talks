@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Talks</title>
+    <meta name="description" content="Talks and presentations. Slides built with reveal.js." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="lang-switch"><a href="./">PT</a><b>EN</b></div>
+
+      <div class="kicker">Slides &amp; presentations</div>
+      <h1>Talks</h1>
+      <p class="intro">
+        Decks for the talks I give, built with reveal.js. Every talk exists in
+        <strong>Portuguese</strong> and <strong>English</strong>. Arrow keys to navigate,
+        <strong>S</strong> for speaker notes, <strong>F</strong> for fullscreen.
+      </p>
+
+      <div class="talks" id="talks"></div>
+
+      <footer>
+        To add a talk: copy the <a href="demo/en.html">demo/</a> folder and register the entry in
+        <code>assets/talks.js</code> &middot;
+        <a href="https://github.com/omatheusmesmo">github.com/omatheusmesmo</a>
+      </footer>
+    </div>
+
+    <script src="assets/talks.js"></script>
+    <script>
+      renderTalks("en");
+    </script>
+  </body>
+</html>

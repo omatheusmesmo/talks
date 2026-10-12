@@ -547,3 +547,91 @@ body {
   margin-top: 40px;
   max-width: none;
 }
+
+/* ---------- Números: a prova em três cifras ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  margin-top: 52px;
+}
+
+.stats .stat {
+  border-top: 2px solid var(--ember);
+  padding-top: 22px;
+}
+
+.stats .figure {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 128px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+.stats .label {
+  display: block;
+  margin-top: 18px;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.stats + .sub,
+.takeaways + .sub {
+  margin-top: 40px;
+  max-width: none;
+}
+
+/* ---------- QR final: texto à esquerda, código à direita ---------- */
+
+.qr .qr-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 72px;
+  align-items: center;
+}
+
+.qr h2 {
+  font-size: 84px;
+  line-height: 1;
+  max-width: 11ch;
+}
+
+.qr .url {
+  display: block;
+  margin-top: 36px;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--ember);
+}
+
+.qr .qr-code {
+  position: relative;
+  width: 380px;
+}
+
+/* Moldura deslocada atrás do código, a mesma gramática do avatar */
+.qr .qr-code::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 380px;
+  height: 380px;
+  border: 1px solid var(--ember);
+  border-radius: 6px;
+}
+
+.qr .qr-code img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 380px;
+  height: 380px;
+  border-radius: 6px;
+  background: #fff;
+}

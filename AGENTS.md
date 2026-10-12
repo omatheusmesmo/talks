@@ -48,6 +48,8 @@ The class vocabulary a deck composes from:
 | `.qa` | section | numbered `ol` of questions for the Q&A session |
 | `.duo` | div | two-column comparison, each column a `.col` with `h3` + `ul` |
 | `.takeaways` | div | three-card grid, each card a `.card` with `.num` + `h3` + `p` |
+| `.stats` | div | three-figure proof, each `.stat` with a big `.figure` + `.label`; date the data in the `.sub` below |
+| `.qr` | section | closing take-home: `.qr-layout` with text and `.url` on the left, `.qr-code` with the SVG on the right |
 | `.bonus` | section | closing slide, uses `.steps` for the mono pipeline chips |
 | `.sub` / `.lede` | p | muted supporting line / larger emphasis line |
 | `.fragment.fade-up` | any | reveal-on-click, custom easing defined in `deck.css` |
@@ -82,17 +84,24 @@ language is the most likely regression in this repo.
 
 ### The talk index
 
-`index.html` renders the talk list from a `TALKS` array declared inline in a `<script>` block, not
-fetched from a JSON file. That is deliberate: it keeps the index working over `file://` with no
-server. Each entry needs `slug`, `date`, `title`, `summary`, `speakers`, and optionally `tag`. The
-renderer builds `/<slug>/` and `/<slug>/en.html` links from the slug, so the folder name and slug
-must match.
+The home page is bilingual: `index.html` (PT) and `en.html` (EN) are thin pages that call
+`renderTalks("pt")` / `renderTalks("en")`. The `TALKS` array and the renderer live in
+`assets/talks.js`, loaded with a classic `<script src>`, not fetched from a JSON file. That is
+deliberate: a classic script keeps the index working over `file://` with no server, and a single
+registry means a talk is never listed in one language and forgotten in the other.
+
+Each entry needs `slug`, `date`, `title`, `summary`, `speakers`, and optionally `tag`. `title`,
+`summary` and `speakers` accept either a plain string or `{ pt, en }`; use `{ pt, en }` for anything
+that differs between languages. The renderer builds `/<slug>/` and `/<slug>/en.html` links from the
+slug, so the folder name and slug must match. The PT index links each title to the PT deck and the EN
+index links it to the EN deck.
 
 ### Adding a talk
 
 1. `cp -r demo my-new-talk`
 2. Edit both `index.html` and `en.html` inside it.
-3. Prepend an entry to the `TALKS` array in the root `index.html`.
+3. Prepend an entry to the `TALKS` array in `assets/talks.js`, with `title` and `summary` in both
+   languages.
 
 `demo/` is the canonical template and doubles as the POC that navigation works. Keep it in sync with
 the class vocabulary: when you add a layout to `deck.css`, demonstrate it in `demo/`.

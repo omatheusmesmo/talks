@@ -29,9 +29,49 @@ body {
 }
 
 .wrap {
+  position: relative;
   max-width: 940px;
   margin: 0 auto;
   padding: clamp(56px, 11vw, 128px) clamp(24px, 5vw, 40px) 96px;
+}
+
+.lang-switch {
+  position: absolute;
+  top: clamp(24px, 4vw, 44px);
+  right: clamp(24px, 5vw, 40px);
+  display: flex;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.lang-switch a,
+.lang-switch b {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.lang-switch a {
+  color: var(--paper);
+  border-color: rgba(244, 239, 230, 0.32);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.lang-switch a:hover,
+.lang-switch a:focus-visible {
+  background: rgba(244, 239, 230, 0.08);
+  border-color: var(--paper);
+  outline: none;
+}
+
+.lang-switch b {
+  color: var(--ember);
+  border-color: var(--ember);
+  background: rgba(255, 95, 46, 0.1);
 }
 
 .kicker {
